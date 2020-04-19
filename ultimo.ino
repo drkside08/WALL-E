@@ -15,6 +15,15 @@ void setup()
 {
   Serial.begin(9600); ///Auxiliar para ver varibles internas o electricas  
   pinMode(SenialEncoder,INPUT);   //<-Renombrar
+
+  pinMode(BArranque,INPUT);
+  pinMode(BParo,INPUT);
+  pinMode(BDistancia,INPUT);
+
+  pinMode(avancemotor1,OUTPUT);
+  pinMode(avancemotor2,OUTPUT);
+  pinMode(retromotor1,OUTPUT);
+  pinMode(retromotor2,OUTPUT);
 }
 
  int Pulso(int ContadorAux) //<--- funcion que cuenta los pulsos del encoder
@@ -38,13 +47,13 @@ void setup()
 
 void loop() 
 {           
-  while(Contador<15){ // se le da el  numro de vueltas (125
+  while(Contador<15){ // se le da el  numro de vueltas (125).....
     digitalWrite (avancemotor1, HIGH);
     digitalWrite (avancemotor2, HIGH);
-     Contador=Pulso(Contador);
+    Contador=Pulso(Contador);
   }
     digitalWrite (avancemotor1,LOW);
-     digitalWrite (avancemotor2, LOW);
- delay (1000); 
+    digitalWrite (avancemotor2, LOW);
+    delay (1000); 
  //Contador=0;
 }
