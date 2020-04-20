@@ -11,7 +11,7 @@ int BParo = 12;
 int BDistancia = 10;
 double Distancia = 0;//Varible digital
 
-void setup() 
+void setup() //<-Aqui inicia la funcion SETUP-------------------------------------
 {
   Serial.begin(9600); ///Auxiliar para ver varibles internas o electricas  
   pinMode(SenialEncoder,INPUT);   //<-Renombrar
@@ -24,9 +24,13 @@ void setup()
   pinMode(avancemotor2,OUTPUT);
   pinMode(retromotor1,OUTPUT);
   pinMode(retromotor2,OUTPUT);
-}
+}//<--Aqui acaba la funcion SETUP--------------------------
+/****************************************************************************************/
+/* las variavles se declaran como entradas y salidas en la funcion "SETUP" por que      */
+/* son las primeras instruciones que se ejecutan cuando el arduino es alimentado        */ 
+/****************************************************************************************/
 
- int Pulso(int ContadorAux) //<--- funcion que cuenta los pulsos del encoder
+ int Pulso(int ContadorAux) //<--- Inicio de la Funcion "PULSO" que es la que cuenta los pulsos en el  encoder
  {
     dato_actual = digitalRead(SenialEncoder);
    if (dato_anterior != dato_actual)
@@ -43,7 +47,13 @@ void setup()
   
     dato_anterior = dato_actual;
     return ContadorAux;
- }  
+    /***********************************************************************************************************/
+    /* Si declaras las salidas y entradas aqui, el compilador no te dara errores pero internamente             */
+    /* se estran redeclarando continuamente por lo que llevara al programa a bugerase o dañar la memoria       */
+    /* del arduino, mas aparte es una mala practica declarar "ENTRADAS Y SALIDAS GLOBALES EN FUNCION QUE ESTAN */
+    /* EN CONSTANTE INTERACION"                                                                                */ 
+    /***********************************************************************************************************/
+ } //<-----Fin de la funcion "PULSO"
 
 void loop() 
 {           
